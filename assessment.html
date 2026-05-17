@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elevator Assessment — Executive Elevator Co.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B1526;
+  --white:#FFFFFF;
+  --off-white:#F7F5F2;
+  --text:rgba(11,21,38,1);
+  --text-mid:rgba(11,21,38,0.58);
+  --text-light:rgba(11,21,38,0.35);
+  --serif:'Playfair Display',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+body{font-family:var(--sans);color:var(--text);background:var(--white);overflow-x:hidden;}
+
+/* progress */
+.assess-progress{position:fixed;top:0;left:0;right:0;height:2px;background:rgba(11,21,38,0.08);z-index:100;}
+.assess-progress-fill{height:100%;background:var(--navy);transition:width 0.5s cubic-bezier(0.4,0,0.2,1);}
+
+/* header */
+.assess-bar{position:fixed;top:2px;left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;z-index:99;background:var(--white);border-bottom:1px solid rgba(11,21,38,0.06);}
+.assess-logo{display:flex;flex-direction:column;gap:1px;text-decoration:none;}
+.assess-logo-main{font-family:var(--serif);font-size:1rem;font-weight:500;letter-spacing:0.06em;color:var(--navy);}
+.assess-logo-sub{font-size:0.57rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-light);font-weight:500;}
+.assess-exit{font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-light);text-decoration:none;font-weight:500;transition:color 0.2s;}
+.assess-exit:hover{color:var(--navy);}
+
+/* main */
+.assess-main{min-height:100vh;padding:110px 2rem 6rem;display:flex;align-items:center;justify-content:center;}
+.assess-step{display:none;width:100%;max-width:640px;}
+.assess-step.active{display:block;animation:fadeUp 0.35s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+/* step header */
+.step-eyebrow{font-size:0.6rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--text-light);margin-bottom:1.2rem;font-weight:500;}
+.step-q{font-family:var(--serif);font-size:clamp(1.9rem,4.5vw,2.9rem);font-weight:400;color:var(--navy);line-height:1.15;margin-bottom:0.6rem;}
+.step-q em{font-style:italic;}
+.step-hint{font-size:0.86rem;line-height:1.75;color:var(--text-mid);font-weight:300;margin-bottom:2.5rem;}
+
+/* cards */
+.card-grid{display:grid;gap:0.9rem;margin-bottom:2rem;}
+.card-grid.cols-2{grid-template-columns:1fr 1fr;}
+.card-grid.cols-1{grid-template-columns:1fr;}
+.a-card{border:1px solid rgba(11,21,38,0.13);padding:1.5rem 1.7rem;cursor:pointer;text-align:left;background:var(--white);transition:border-color 0.18s,background 0.18s;width:100%;}
+.a-card:hover{border-color:rgba(11,21,38,0.4);}
+.a-card.selected{border-color:var(--navy);background:rgba(11,21,38,0.025);}
+.a-card-title{font-family:var(--serif);font-size:1.08rem;font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:0.3rem;}
+.a-card.selected .a-card-title{font-weight:500;}
+.a-card-desc{font-size:0.76rem;line-height:1.6;color:var(--text-mid);font-weight:300;}
+
+/* nav row */
+.step-nav{display:flex;align-items:center;justify-content:space-between;}
+.btn-back{font-size:0.66rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-light);background:none;border:none;cursor:pointer;font-family:var(--sans);font-weight:500;padding:0;transition:color 0.2s;}
+.btn-back:hover{color:var(--navy);}
+.btn-next{display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:var(--white);padding:0.85rem 1.8rem;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;font-family:var(--sans);transition:opacity 0.2s;opacity:0.35;pointer-events:none;}
+.btn-next.ready{opacity:1;pointer-events:all;}
+.btn-next.ready:hover{opacity:0.82;}
+
+/* contact form */
+.a-form{display:flex;flex-direction:column;gap:1.4rem;}
+.a-form-row{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+.a-form-group{display:flex;flex-direction:column;gap:0.45rem;}
+.a-form-label{font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-light);font-weight:500;}
+.a-form-input{border:1px solid rgba(11,21,38,0.13);background:var(--white);padding:0.85rem 1rem;font-size:0.88rem;color:var(--text);font-family:var(--sans);font-weight:300;width:100%;outline:none;transition:border-color 0.2s;appearance:none;}
+.a-form-input:focus{border-color:rgba(11,21,38,0.5);}
+.optional-tag{color:var(--text-light);font-weight:300;font-size:0.58rem;letter-spacing:0.1em;text-transform:uppercase;margin-left:0.4rem;}
+
+/* start screen */
+.start-eyebrow{font-size:0.6rem;letter-spacing:0.24em;text-transform:uppercase;color:var(--text-light);margin-bottom:1.5rem;font-weight:500;}
+.start-h{font-family:var(--serif);font-size:clamp(2.4rem,5.5vw,3.6rem);font-weight:400;color:var(--navy);line-height:1.1;margin-bottom:1rem;}
+.start-h em{font-style:italic;}
+.start-sub{font-size:0.94rem;line-height:1.85;color:var(--text-mid);font-weight:300;max-width:420px;margin-bottom:0.8rem;}
+.start-note{font-size:0.78rem;color:var(--text-light);font-weight:300;margin-bottom:3rem;}
+.btn-start{display:inline-flex;align-items:center;gap:10px;background:var(--navy);color:var(--white);padding:1rem 2.2rem;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;font-family:var(--sans);transition:opacity 0.2s;text-decoration:none;}
+.btn-start:hover{opacity:0.82;}
+
+/* result */
+.result-box{border:1px solid rgba(11,21,38,0.12);padding:2.4rem;margin-bottom:2rem;}
+.result-box.emergency{border-color:var(--navy);background:var(--navy);}
+.result-rec-label{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-light);margin-bottom:0.75rem;font-weight:500;}
+.emergency .result-rec-label{color:rgba(255,255,255,0.35);}
+.result-rec-service{font-family:var(--serif);font-size:1.75rem;font-weight:400;color:var(--navy);margin-bottom:0.8rem;line-height:1.15;}
+.emergency .result-rec-service{color:var(--white);}
+.result-rec-desc{font-size:0.87rem;line-height:1.8;color:var(--text-mid);font-weight:300;}
+.emergency .result-rec-desc{color:rgba(255,255,255,0.62);}
+.result-phone{font-family:var(--serif);font-size:1.9rem;color:var(--white);text-decoration:none;display:block;margin-top:1.2rem;transition:opacity 0.2s;}
+.result-phone:hover{opacity:0.75;}
+.result-confirm{font-size:0.86rem;line-height:1.8;color:var(--text-mid);font-weight:300;margin-bottom:2.2rem;}
+.result-summary{display:flex;gap:2.5rem;flex-wrap:wrap;padding-top:2rem;border-top:1px solid rgba(11,21,38,0.08);margin-bottom:2.5rem;}
+.result-summary-item{}
+.result-summary-label{font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-light);margin-bottom:0.3rem;font-weight:500;}
+.result-summary-value{font-size:0.85rem;color:var(--navy);font-weight:400;}
+.result-actions{display:flex;gap:1.2rem;flex-wrap:wrap;}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--navy);border:1px solid rgba(11,21,38,0.2);padding:0.85rem 1.8rem;font-size:0.7rem;letter-spacing:0.14em;text-transform:uppercase;font-weight:600;text-decoration:none;transition:border-color 0.2s;}
+.btn-outline:hover{border-color:rgba(11,21,38,0.5);}
+
+/* emergency screen */
+.emergency-wrap{background:var(--navy);padding:4rem 2.5rem;text-align:center;width:100%;}
+.emergency-eyebrow{font-size:0.6rem;letter-spacing:0.26em;text-transform:uppercase;color:rgba(255,255,255,0.28);margin-bottom:1.5rem;font-weight:500;}
+.emergency-h{font-family:var(--serif);font-size:clamp(2rem,4.5vw,3rem);font-weight:400;color:var(--white);line-height:1.15;margin-bottom:3rem;}
+.emergency-h em{font-style:italic;}
+.emergency-phones{margin-bottom:3rem;}
+.emergency-phone-label{font-size:0.57rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.28);font-weight:500;margin-bottom:0.5rem;}
+.emergency-phone-main{font-family:var(--serif);font-size:clamp(2.8rem,8vw,4.5rem);color:var(--white);text-decoration:none;display:block;line-height:1;margin-bottom:2.5rem;transition:opacity 0.2s;}
+.emergency-phone-main:hover{opacity:0.7;}
+.emergency-phone-alt{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2rem);color:rgba(255,255,255,0.6);text-decoration:none;display:block;line-height:1;margin-bottom:1.2rem;transition:color 0.2s,opacity 0.2s;}
+.emergency-phone-alt:hover{color:var(--white);}
+.emergency-back-btn{font-size:0.62rem;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.28);background:none;border:none;cursor:pointer;font-family:var(--sans);font-weight:500;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.08);width:100%;transition:color 0.2s;margin-top:0.5rem;}
+.emergency-back-btn:hover{color:rgba(255,255,255,0.6);}
+
+@media(max-width:600px){
+  .card-grid.cols-2{grid-template-columns:1fr;}
+  .a-form-row{grid-template-columns:1fr;}
+  .assess-bar{padding:0 1.5rem;}
+  .assess-main{padding-left:1.5rem;padding-right:1.5rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="assess-progress">
+  <div class="assess-progress-fill" id="progress-fill" style="width:0%"></div>
+</div>
+
+<header class="assess-bar">
+  <a href="index.html" class="assess-logo">
+    <div class="assess-logo-main">Executive Elevator Co.</div>
+    <div class="assess-logo-sub">Est. 2006 &nbsp;·&nbsp; Louisville, KY</div>
+  </a>
+  <a href="index.html" class="assess-exit">← Exit</a>
+</header>
+
+<main class="assess-main">
+
+  <!-- ── START ── -->
+  <div class="assess-step active" id="step-start">
+    <div class="start-eyebrow">Elevator Assessment</div>
+    <h1 class="start-h">Find the right<br>elevator <em>solution.</em></h1>
+    <p class="start-sub">Answer a few questions about your project or existing system. We'll identify the right service and connect you with our team.</p>
+    <p class="start-note">Takes about 2 minutes.</p>
+    <button class="btn-start" onclick="startAssessment()">Begin Assessment →</button>
+  </div>
+
+  <!-- ── STEP 1: FORK ── -->
+  <div class="assess-step" id="step-1">
+    <div class="step-eyebrow">Step 1 of 5</div>
+    <h2 class="step-q">What brings you<br><em>here today?</em></h2>
+    <div class="card-grid cols-2">
+      <button class="a-card" onclick="selectCard('intent','new',this)">
+        <div class="a-card-title">I need a new elevator</div>
+        <div class="a-card-desc">New installation for a commercial or residential project</div>
+      </button>
+      <button class="a-card" onclick="selectCard('intent','existing',this)">
+        <div class="a-card-title">I have an existing elevator</div>
+        <div class="a-card-desc">Service, maintenance, repair, or modernization of a current system</div>
+      </button>
+    </div>
+    <div class="step-nav">
+      <button class="btn-back" onclick="goBack()">← Back</button>
+    </div>
+  </div>
+
+  <!-- ── STEP A2: BUILDING TYPE ── -->
+  <div class="assess-step" id="step-a2">
+    <div class="step-eyebrow">Step 2 of 5</div>
+    <h2 class="step-q">Commercial or<br><em>residential project?</em></h2>
+    <div class="card-grid cols-2">
+      <button class="a-card" onclick="selectCard('buildingType','commercial',this)">
+        <div class="a-card-title">Commercial</div>
+        <div class="a-card-desc">Office, hotel, museum, retail, medical, mixed-use, or industrial facility</div>
+      </button>
+      <button class="a-card" onclick="selectCard('buildingType','residential',this)">
+        <div class="a-card-title">Residential</div>
+        <div class="a-card-desc">Private home — new construction or existing residence</div>
+      </button>
+    </div>
+    <div class="step-nav">
+      <button class="btn-back" onclick="goBack()">← Back</button>
+    </div>
+  </div>
+
+  <!-- ── STEP A3: MARKET ── -->
+  <div class="assess-step" id="step-a3">
+    <div class="step-eyebrow">Step 3 of 5</div>
+    <h2 class="step-q">Where is<br><em>the project located?</em></h2>
+    <div class="card-grid cols-2">
+      <button class="a-card" onclick="selectCard('market','Louisville, KY',this)">
+        <div class="a-card-title">Louisville, KY</div>
+        <div class="a-card-desc">Our headquarters and home market since 2006</div>
+      </button>
+      <button class="a-card" onclick="selectCard('market','Indianapolis, IN',this)">
+        <div class="a-card-title">Indianapolis, IN</div>
+        <div class="a-card-desc">Serving the Indianapolis metro area</div>
+      </button>
+      <button class="a-card" onclick="selectCard('market','Nashville, TN',this)">
+        <div class="a-card-title">Nashville, TN</div>
+        <div class="a-card-desc">Serving the greater Nashville area</div>
+      </button>
+      <button class="a-card" onclick="selectCard('market','Cincinnati, OH',this)">
+        <div class="a-card-title">Cincinnati, OH</div>
+        <div class="a-card-desc">Serving the greater Cincinnati area</div>
+      </button>
+    </div>
+    <div class="step-nav">
+      <button class="btn-back" onclick="goBack()">← Back</button>
+    </div>
+  </div>
+
+  <!-- ── STEP A4: TIMELINE ── -->
+  <div class="assess-step" id="step-a4">
+    <div class="step-eyebrow">Step 4 of 5</div>
+    <h2 class="step-q">What's your<br><em>timeline?</em></h2>
+    <div class="card-grid cols-1">
+      <button class="a-card" onclick="selectCard('timeline','Planning stage (6+ months out)',this)">
+        <div class="a-card-title">Planning stage</div>
+        <div class="a-card-desc">6 months or more out — early design and specification phase</div>
+      </button>
+      <button class="a-card" onclick="selectCard('timeline','Coming up soon (2–6 months)',this)">
+        <div class="a-card-title">Coming up soon</div>
+        <div class="a-card-desc">2 to 6 months — moving toward active scope and bidding</div>
+      </button>
+      <button class="a-card" onclick="selectCard('timeline','Urgent (within 2 months)',this)">
+        <div class="a-card-title">Urgent</div>
+        <div class="a-card-desc">Within 2 months — need to move quickly</div>
+      </button>
+    </div>
+    <div class="step-nav">
+      <button class="btn-back" onclick="goBack()">← Back</button>
+    </div>
+  </div>
+
+  <!-- ── STEP B2: CONCERN ── -->
+  <div class="assess-step" id="step-b2">
+    <div class="step-eyebrow">Step 2 of 5</div>
+    <h2 class="step-q">What's the<br><em>primary concern?</em></h2>
+    <div class="card-grid cols-1">
+      <button class="a-card" onclick="selectCard('concern','maintenance',this)">
+        <div class="a-card-title">Routine maintenance is due</div>
+        <div class="a-card-desc">Scheduled inspection, service, or a maintenance contract</div>
+      </button>
+      <button class="a-card" onclick="selectCard('concern','performance',this)">
+        <div class="a-card-title">Performance issues</div>
+        <div class="a-card-desc">Slow, noisy, rough ride, or intermittent problems</div>
+      </button>
+      <button class="a-card" onclick="selectCard('concern','safety',this)">
+        <div class="a-card-title">Safety concerns</div>
+        <div class="a-card-desc">A safety issue or code deficiency that needs to be addressed</div>
+      </button>
+      <button class="a-card" onclick="selectCard('concern','out-of-service',this)">
+        <div class="a-card-title">Elevator is out of service</div>
+        <div class="a-card-desc">The elevator is not running and needs immediate attention</div>
+      </button>
+      <button class="a-card" onclick="selectCard('concern','modernization',this)">
+        <div class="a-card-title">Considering modernization</div>
+        <div class="a-card-desc">Updating an aging system for performance, code compliance, or appearance</div>
+      </button>
+    </div>
+    <div class="step-nav">
+      <button class="btn-back" onclick="goBack()">← Back</button>
+    </div>
+  </div>
+
+  <!-- ── STEP B3: SYSTEM AGE ── -->
+  <div class="assess-step" id="step-b3">
+    <div class="step-eyebrow">Step 3 of 5</div>
+    <h2 class="step-q">How old is<br><em>the system?</em></h2>
+    <div class="card-grid cols-2">
+      <button class="a-card" onclick="selectCard('age','Less than 10 years',this)">
+        <div class="a-card-title">Less than 10 years</div>
+        <div class="a-card-desc">Relatively new system</div>
+      </button>
+      <button class="a-card" onclick="selectCard('age','10–20 years',this)">
+        <div class="a-card-title">10 to 20 years</div>
+        <div class="a-card-desc">Mid-life system</div>
+      </button>
+      <button class="a-card" onclick="selectCard('age','20–30 years',this)">
+        <div class="a-card-title">20 to 30 years</div>
+        <div class="a-card-desc">Modernization often appropriate at this age</div>
+      </button>
+      <button class="a-card" onclick="selectCard('age','30+ years',this)">
+        <div class="a-card-title">30 years or older</div>
+        <div class="a-card-desc">Strong candidate for modernization or replacement</div>
+      </button>
+    </div>
+    <div class="step-nav">
+      <button class="btn-back" onclick="goBack()">← Back</button>
+    </div>
+  </div>
+
+  <!-- ── STEP B4: MARKET ── -->
+  <div class="assess-step" id="step-b4">
+    <div class="step-eyebrow">Step 4 of 5</div>
+    <h2 class="step-q">Where is<br><em>the elevator located?</em></h2>
+    <div class="card-grid cols-2">
+      <button class="a-card" onclick="selectCard('market','Louisville, KY',this)">
+        <div class="a-card-title">Louisville, KY</div>
+        <div class="a-card-desc">Our headquarters and home market since 2006</div>
+      </button>
+      <button class="a-card" onclick="selectCard('market','Indianapolis, IN',this)">
+        <div class="a-card-title">Indianapolis, IN</div>
+        <div class="a-card-desc">Serving the Indianapolis metro area</div>
+      </button>
+      <button class="a-card" onclick="selectCard('market','Nashville, TN',this)">
+        <div class="a-card-title">Nashville, TN</div>
+        <div class="a-card-desc">Serving the greater Nashville area</div>
+      </button>
+      <button class="a-card" onclick="selectCard('market','Cincinnati, OH',this)">
+        <div class="a-card-title">Cincinnati, OH</div>
+        <div class="a-card-desc">Serving the greater Cincinnati area</div>
+      </button>
+    </div>
+    <div class="step-nav">
+      <button class="btn-back" onclick="goBack()">← Back</button>
+    </div>
+  </div>
+
+  <!-- ── STEP CONTACT ── -->
+  <div class="assess-step" id="step-contact">
+    <div class="step-eyebrow">Step 5 of 5</div>
+    <h2 class="step-q">Almost done.<br><em>How do we reach you?</em></h2>
+    <p class="step-hint">We'll review your assessment and be in touch promptly.</p>
+    <form class="a-form" onsubmit="submitAssessment(event)">
+      <div class="a-form-row">
+        <div class="a-form-group">
+          <label class="a-form-label" for="c-name">Your Name</label>
+          <input class="a-form-input" type="text" id="c-name" name="name" autocomplete="name" required>
+        </div>
+        <div class="a-form-group">
+          <label class="a-form-label" for="c-company">Company <span class="optional-tag">Optional</span></label>
+          <input class="a-form-input" type="text" id="c-company" name="company" autocomplete="organization">
+        </div>
+      </div>
+      <div class="a-form-row">
+        <div class="a-form-group">
+          <label class="a-form-label" for="c-email">Email Address</label>
+          <input class="a-form-input" type="email" id="c-email" name="email" autocomplete="email" required>
+        </div>
+        <div class="a-form-group">
+          <label class="a-form-label" for="c-phone">Phone <span class="optional-tag">Optional</span></label>
+          <input class="a-form-input" type="tel" id="c-phone" name="phone" autocomplete="tel">
+        </div>
+      </div>
+      <div class="step-nav" style="margin-top:0.4rem;">
+        <button class="btn-back" type="button" onclick="goBack()">← Back</button>
+        <button class="btn-next ready" type="submit">See Our Recommendation →</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- ── EMERGENCY ── -->
+  <div class="assess-step" id="step-emergency">
+    <div class="emergency-wrap">
+      <div class="emergency-eyebrow">Available 24 / 7</div>
+      <h2 class="emergency-h">Call us now.<br>We'll get you<br><em>back up.</em></h2>
+      <div class="emergency-phones">
+        <div class="emergency-phone-label">Toll Free</div>
+        <a href="tel:18664635251" class="emergency-phone-main">(866) 463-5251</a>
+        <div class="emergency-phone-label">Louisville &amp; Regional</div>
+        <a href="tel:15026361993" class="emergency-phone-alt">(502) 636-1993</a>
+        <div class="emergency-phone-label" style="margin-top:0.8rem;">Indianapolis</div>
+        <a href="tel:13174265664" class="emergency-phone-alt">(317) 426-5664</a>
+      </div>
+      <button class="emergency-back-btn" onclick="exitEmergency()">← That's not my situation</button>
+    </div>
+  </div>
+
+  <!-- ── STEP RESULT ── -->
+  <div class="assess-step" id="step-result">
+    <div class="step-eyebrow">Assessment Complete</div>
+    <h2 class="step-q">Here's our<br><em>recommendation.</em></h2>
+    <div class="result-box" id="result-box"></div>
+    <p class="result-confirm" id="result-confirm"></p>
+    <div class="result-summary" id="result-summary"></div>
+    <div class="result-actions">
+      <a href="contact.html" class="btn-start">Go to Contact Page →</a>
+      <a href="index.html" class="btn-outline">Back to Home</a>
+    </div>
+  </div>
+
+</main>
+
+<script>
+const state = {
+  intent: null, buildingType: null, concern: null,
+  age: null, market: null, timeline: null,
+  name: '', company: '', email: '', phone: ''
+};
+
+const seqNew      = ['step-start','step-1','step-a2','step-a3','step-a4','step-contact','step-result'];
+const seqExisting = ['step-start','step-1','step-b2','step-b3','step-b4','step-contact','step-result'];
+const seqDefault  = ['step-start','step-1'];
+
+let seq = seqDefault.slice();
+let idx = 0;
+let autoTimer = null;
+
+function startAssessment() {
+  idx = 1;
+  show('step-1');
+}
+
+function show(id) {
+  document.querySelectorAll('.assess-step').forEach(function(s){ s.classList.remove('active'); });
+  var el = document.getElementById(id);
+  if (el) el.classList.add('active');
+  tick();
+  window.scrollTo(0, 0);
+}
+
+function tick() {
+  var total = seq.length - 2; // exclude start + result from bar
+  var pos = Math.max(0, idx - 1);
+  var pct = total > 0 ? Math.min(100, (pos / total) * 100) : 0;
+  document.getElementById('progress-fill').style.width = pct + '%';
+}
+
+function goNext() {
+  clearTimeout(autoTimer);
+  if (idx >= seq.length - 1) return;
+  idx++;
+  var id = seq[idx];
+  show(id);
+  // reset next button on the new step (skip submit buttons)
+  var step = document.getElementById(id);
+  if (step) {
+    var nb = step.querySelector('.btn-next:not([type="submit"])');
+    if (nb) nb.classList.remove('ready');
+  }
+}
+
+function goBack() {
+  if (idx <= 0) return;
+  // clear card selections on current step
+  var cur = document.getElementById(seq[idx]);
+  if (cur) cur.querySelectorAll('.a-card').forEach(function(c){ c.classList.remove('selected'); });
+
+  if (idx === 1) {
+    idx = 0;
+    seq = seqDefault.slice();
+    show('step-start');
+  } else {
+    idx--;
+    show(seq[idx]);
+  }
+}
+
+function selectCard(key, value, el) {
+  var step = el.closest('.assess-step');
+  step.querySelectorAll('.a-card').forEach(function(c){ c.classList.remove('selected'); });
+  el.classList.add('selected');
+  state[key] = value;
+
+  if (key === 'intent') {
+    seq = value === 'new' ? seqNew.slice() : seqExisting.slice();
+    state.buildingType = null; state.concern = null;
+    state.age = null; state.market = null; state.timeline = null;
+  }
+
+  var nb = step.querySelector('.btn-next:not([type="submit"])');
+  if (nb) nb.classList.add('ready');
+  clearTimeout(autoTimer);
+  if (key === 'concern' && value === 'out-of-service') {
+    autoTimer = setTimeout(function(){ show('step-emergency'); }, 300);
+  } else {
+    autoTimer = setTimeout(goNext, 450);
+  }
+}
+
+function exitEmergency() {
+  state.concern = null;
+  var step = document.getElementById('step-b2');
+  if (step) step.querySelectorAll('.a-card').forEach(function(c){ c.classList.remove('selected'); });
+  show('step-b2');
+}
+
+function submitAssessment(e) {
+  e.preventDefault();
+  state.name    = document.getElementById('c-name').value.trim();
+  state.company = document.getElementById('c-company').value.trim();
+  state.email   = document.getElementById('c-email').value.trim();
+  state.phone   = document.getElementById('c-phone').value.trim();
+  buildResult();
+  idx++;
+  show(seq[idx]);
+  document.getElementById('progress-fill').style.width = '100%';
+}
+
+function buildResult() {
+  var rec = getRecommendation();
+  var box = document.getElementById('result-box');
+
+  if (rec.urgent) {
+    box.classList.add('emergency');
+    box.innerHTML =
+      '<div class="result-rec-label">Our Recommendation</div>' +
+      '<div class="result-rec-service">' + rec.service + '</div>' +
+      '<div class="result-rec-desc">' + rec.desc + '</div>' +
+      '<a href="tel:15026361993" class="result-phone">(502) 636-1993</a>';
+  } else {
+    box.innerHTML =
+      '<div class="result-rec-label">Our Recommendation</div>' +
+      '<div class="result-rec-service">' + rec.service + '</div>' +
+      '<div class="result-rec-desc">' + rec.desc + '</div>';
+  }
+
+  var first = state.name ? state.name.split(' ')[0] : '';
+  document.getElementById('result-confirm').textContent =
+    (first ? 'Thank you, ' + first + '. ' : 'Thank you. ') +
+    'Your assessment has been submitted. We\'ll review your details and be in touch at ' + state.email + '.';
+
+  var items = [];
+  if (state.market) items.push({ label: 'Location', value: state.market });
+  if (state.intent === 'new') {
+    if (state.buildingType) items.push({ label: 'Project Type', value: state.buildingType === 'commercial' ? 'Commercial' : 'Residential' });
+    if (state.timeline)     items.push({ label: 'Timeline', value: state.timeline });
+  } else {
+    var concernMap = {
+      maintenance: 'Routine Maintenance', performance: 'Performance Issues',
+      safety: 'Safety Concern', 'out-of-service': 'Out of Service', modernization: 'Modernization'
+    };
+    if (state.concern) items.push({ label: 'Concern', value: concernMap[state.concern] || state.concern });
+    if (state.age)     items.push({ label: 'System Age', value: state.age });
+  }
+
+  document.getElementById('result-summary').innerHTML = items.map(function(d) {
+    return '<div class="result-summary-item">' +
+      '<div class="result-summary-label">' + d.label + '</div>' +
+      '<div class="result-summary-value">' + d.value + '</div>' +
+      '</div>';
+  }).join('');
+}
+
+function getRecommendation() {
+  if (state.intent === 'new') {
+    if (state.buildingType === 'commercial') {
+      return {
+        service: 'Commercial Elevator Installation',
+        desc: 'Based on your project details, we recommend scheduling a consultation to discuss system type, building specifications, permitting, and timeline. We work alongside your architect and general contractor from specification through final commissioning.',
+        urgent: false
+      };
+    }
+    return {
+      service: 'Residential Elevator Installation',
+      desc: 'We\'ll work with you to specify a custom home elevator that fits your home\'s architecture, your aesthetic, and your timeline. From system selection through installation, we handle it.',
+      urgent: false
+    };
+  }
+
+  // existing elevator
+  if (state.concern === 'out-of-service') {
+    return {
+      service: 'Emergency Service',
+      desc: 'When an elevator is down, you need a fast response. Call us directly — our technicians serve Louisville, Indianapolis, Nashville, and Cincinnati.',
+      urgent: true
+    };
+  }
+  if (state.concern === 'safety') {
+    return {
+      service: 'Priority Service Evaluation',
+      desc: 'Safety concerns require prompt attention. We\'ll schedule an inspection to assess the issue, identify any code deficiencies, and get your elevator back to safe operating condition quickly.',
+      urgent: false
+    };
+  }
+  if (state.age === '30+ years') {
+    return {
+      service: 'Modernization Assessment',
+      desc: 'Systems 30 years or older are strong candidates for full modernization. We\'ll evaluate your equipment against current safety codes and performance standards, then build a scoped modernization plan — no unnecessary padding.',
+      urgent: false
+    };
+  }
+  if (state.age === '20–30 years' || state.concern === 'modernization') {
+    return {
+      service: 'Modernization Consultation',
+      desc: 'At this age and usage level, a modernization assessment makes sense. We\'ll look at what the system actually needs — controls, drives, doors, cab — and build a scope that covers exactly that.',
+      urgent: false
+    };
+  }
+  if (state.concern === 'performance') {
+    return {
+      service: 'Service Evaluation',
+      desc: 'Performance issues — slow operation, noise, rough ride — are usually traceable to specific mechanical or control causes. We\'ll diagnose the issue and recommend targeted service or repairs.',
+      urgent: false
+    };
+  }
+  return {
+    service: 'Preventive Maintenance',
+    desc: 'Regular scheduled service keeps your elevator running and your liability low. We\'ll build a customized care packet for your specific equipment — matched to your usage patterns and code inspection schedule.',
+    urgent: false
+  };
+}
+</script>
+
+</body>
+</html>
