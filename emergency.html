@@ -3,19 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Core Values — Executive Elevator Co.</title>
+<title>Emergency Service — Executive Elevator Co.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="stylesheet" href="style.css">
 <style>
-.values-list{border-top:1px solid rgba(11,21,38,0.08);}
-.value-row{display:grid;grid-template-columns:200px 1fr;gap:4rem;padding:3.5rem 0;border-bottom:1px solid rgba(11,21,38,0.08);align-items:start;}
-.value-label{font-size:0.62rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-light);font-weight:500;padding-top:0.2rem;line-height:1.6;}
-.value-body{font-size:0.95rem;line-height:1.85;color:var(--text-mid);font-weight:300;max-width:640px;}
-@media(max-width:768px){
-  .value-row{grid-template-columns:1fr;gap:0.8rem;padding:2.5rem 0;}
-}
+.emergency-hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--navy);overflow:hidden;}
+.emergency-bg{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat;opacity:0.15;}
+.emergency-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,21,38,0.7) 0%,rgba(11,21,38,0.25) 100%);}
+.emergency-content{position:relative;z-index:2;text-align:center;padding:calc(var(--nav-h) + 4rem) 3rem 4rem;max-width:820px;margin:0 auto;}
+.emergency-eyebrow{font-size:0.65rem;letter-spacing:0.26em;text-transform:uppercase;color:rgba(255,255,255,0.38);margin-bottom:1.5rem;font-weight:500;}
+.emergency-h1{font-family:var(--serif);font-size:clamp(3rem,6vw,5.5rem);font-weight:400;color:var(--white);line-height:1.08;margin-bottom:1.5rem;}
+.emergency-h1 em{font-style:italic;}
+.emergency-sub{font-size:1rem;line-height:1.8;color:rgba(255,255,255,0.5);font-weight:300;max-width:480px;margin:0 auto 4.5rem;}
+.emergency-phones{display:flex;gap:5rem;justify-content:center;flex-wrap:wrap;}
+.emergency-phone-label{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.32);margin-bottom:0.6rem;font-weight:500;}
+.emergency-phone-num{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.4rem);color:var(--white);text-decoration:none;display:block;transition:opacity 0.2s;}
+.emergency-phone-num:hover{opacity:0.65;}
+@media(max-width:600px){.emergency-phones{gap:3rem;}.emergency-content{padding-left:1.5rem;padding-right:1.5rem;}}
 </style>
 </head>
 <body>
@@ -29,8 +35,8 @@
     <a href="commercial.html" class="nav-link">Commercial</a>
     <a href="residential.html" class="nav-link">Residential</a>
     <a href="our-story.html" class="nav-link">Our Story</a>
-    <a href="core-values.html" class="nav-link active">Core Values</a>
-    <a href="emergency.html" class="nav-link">Emergency</a>
+    <a href="core-values.html" class="nav-link">Core Values</a>
+    <a href="emergency.html" class="nav-link active">Emergency</a>
     <a href="assessment.html" class="nav-cta">Get Started</a>
   </div>
   <div class="nav-mobile-btn" id="menu-btn">
@@ -38,62 +44,26 @@
   </div>
 </nav>
 
-<div class="page-hero">
-  <div class="page-hero-bg"></div>
-  <div class="page-hero-overlay"></div>
-  <div class="page-hero-inner">
-    <div class="page-hero-label">Core Values</div>
-    <h1 class="page-hero-h1">Built to make a<br><em>lifetime impression.</em></h1>
-    <p class="page-hero-sub">The values that guide our work and define how we treat the people we serve.</p>
-  </div>
-</div>
-
-<section class="page-section bg-white">
-  <div class="section-inner">
-    <div class="values-list">
-
-      <div class="value-row">
-        <div class="value-label">Who We Are</div>
-        <div class="value-body">Executive Elevator is a company that engineers custom elevator solutions for the Commercial and Residential markets.</div>
+<section class="emergency-hero">
+  <div class="emergency-bg"></div>
+  <div class="emergency-overlay"></div>
+  <div class="emergency-content">
+    <div class="emergency-eyebrow">Emergency Service</div>
+    <h1 class="emergency-h1">When an elevator stops,<br><em>we move fast.</em></h1>
+    <p class="emergency-sub">Available 24 hours a day, 7 days a week across all four markets. Call us directly — no call centers, no queues.</p>
+    <div class="emergency-phones">
+      <div>
+        <div class="emergency-phone-label">Toll Free</div>
+        <a href="tel:18664635251" class="emergency-phone-num">(866) 463-5251</a>
       </div>
-
-      <div class="value-row">
-        <div class="value-label">What We Value Most</div>
-        <div class="value-body">Our team, our customers, our relationships with partners and vendors, honesty, quality, excellence, and a leadership team that is above reproach.</div>
+      <div>
+        <div class="emergency-phone-label">Louisville</div>
+        <a href="tel:15026361993" class="emergency-phone-num">(502) 636-1993</a>
       </div>
-
-      <div class="value-row">
-        <div class="value-label">Why We Exist</div>
-        <div class="value-body">Executive Elevator exists to provide customers with an option for creative-engineered, custom elevator solutions to make a lifetime impression.</div>
+      <div>
+        <div class="emergency-phone-label">Indianapolis</div>
+        <a href="tel:13174265664" class="emergency-phone-num">(317) 426-5664</a>
       </div>
-
-      <div class="value-row">
-        <div class="value-label">Who We Serve</div>
-        <div class="value-body">Executive Elevator serves Commercial and Residential customers with custom engineered elevator solutions specializing in repair and modernization, service, and new installations.</div>
-      </div>
-
-      <div class="value-row">
-        <div class="value-label">Our Promise</div>
-        <div class="value-body">We design and install elevator solutions that fit the wants and needs of our customers. We engineer elevator solutions for longevity. We stand behind and support our work throughout the life span of the elevator by providing excellent service options.</div>
-      </div>
-
-      <div class="value-row">
-        <div class="value-label">Our Impact</div>
-        <div class="value-body">We follow through on our promises so that your elevator solution makes a positive, lifetime impression — providing users with a remarkable experience that enhances your facility and brand.</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section class="cta-section">
-  <div class="cta-inner">
-    <div class="cta-eyebrow">Get In Touch</div>
-    <h2 class="cta-h">Our team<br><em>stands behind its work.</em></h2>
-    <p class="cta-sub">Tell us about your project and we'll put the right solution together.</p>
-    <div class="cta-actions">
-      <a href="assessment.html" class="btn-primary">Get Started →</a>
-      <a href="tel:18664635251" class="cta-phone">(866) 463-5251</a>
     </div>
   </div>
 </section>
@@ -111,7 +81,7 @@
         <ul class="footer-links">
           <li><a href="commercial.html">Commercial Elevators</a></li>
           <li><a href="residential.html">Residential Elevators</a></li>
-          <li><a href="contact.html">Emergency Service</a></li>
+          <li><a href="emergency.html">Emergency Service</a></li>
         </ul>
       </div>
       <div>
@@ -121,7 +91,7 @@
           <li><a href="our-story.html">The Irvin Family</a></li>
           <li><a href="core-values.html">Core Values</a></li>
           <li><a href="our-story.html">Credentials</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="emergency.html">Emergency Service</a></li>
           <li><a href="assessment.html">Elevator Assessment</a></li>
         </ul>
       </div>
