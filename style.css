@@ -76,9 +76,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:
 .clients-grid{display:flex;flex-wrap:nowrap;align-items:center;}
 .client-item{flex:1;padding:1.6rem 0.8rem;border-right:1px solid rgba(11,21,38,0.06);display:flex;align-items:center;justify-content:center;}
 .client-item:last-child{border-right:none;}
-.client-item img{height:28px;width:auto;max-width:90%;filter:grayscale(1) opacity(0.35);transition:filter 0.3s;}
-.client-item img.wordmark{height:18px;}
-.client-item:hover img{filter:grayscale(0) opacity(0.8);}
+.client-item img{height:52px;width:auto;max-width:90%;opacity:0.85;transition:opacity 0.3s;}
+.client-item:hover img{opacity:1;}
 
 /* ── CREDENTIALS ── */
 .credentials{padding:6rem 3rem;background:var(--white);border-top:1px solid rgba(11,21,38,0.07);border-bottom:1px solid rgba(11,21,38,0.07);}
