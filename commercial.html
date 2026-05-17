@@ -12,6 +12,19 @@
 .types-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:5rem;flex-wrap:wrap;gap:2rem;}
 .types-header-note{font-size:0.9rem;line-height:1.85;color:var(--text-mid);font-weight:300;max-width:380px;}
 @media(max-width:768px){.types-header{flex-direction:column;align-items:flex-start;}}
+.project-gallery{padding:7rem 3rem;background:var(--navy);}
+.project-gallery-inner{max-width:var(--max);margin:0 auto;}
+.gallery-header{margin-bottom:4rem;}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.gallery-item{position:relative;overflow:hidden;background:rgba(255,255,255,0.05);}
+.gallery-item--tall{grid-row:span 2;}
+.gallery-ph{width:100%;aspect-ratio:4/3;display:block;background:rgba(255,255,255,0.04);}
+.gallery-item--tall .gallery-ph{aspect-ratio:unset;height:100%;min-height:520px;}
+.gallery-cap{position:absolute;bottom:0;left:0;right:0;padding:1.25rem 1.5rem;background:linear-gradient(to top,rgba(11,21,38,0.9) 0%,transparent 100%);}
+.gallery-cap-title{font-size:0.8rem;color:rgba(255,255,255,0.85);font-weight:500;}
+.gallery-cap-loc{font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:rgba(255,255,255,0.36);margin-top:0.25rem;}
+@media(max-width:900px){.gallery-grid{grid-template-columns:1fr 1fr;}.gallery-item--tall{grid-row:span 1;}.gallery-item--tall .gallery-ph{min-height:unset;aspect-ratio:4/3;height:auto;}}
+@media(max-width:480px){.gallery-grid{grid-template-columns:1fr;}.project-gallery{padding:5rem 1.5rem;}}
 </style>
 </head>
 <body>
@@ -45,12 +58,11 @@
   <div class="clients-inner">
     <div class="clients-label">Trusted by the region's most demanding clients</div>
     <div class="clients-grid">
-      <div class="client-item">Rolls-Royce</div>
-      <div class="client-item">Brown-Forman</div>
-      <div class="client-item">Amazon</div>
-      <div class="client-item">Old Forester</div>
-      <div class="client-item">Mercedes-Benz</div>
-      <div class="client-item">Speed Art Museum</div>
+      <div class="client-item"><img src="logos/rollsroyce.png" alt="Rolls-Royce" loading="lazy"></div>
+      <div class="client-item"><img src="logos/brown-forman.png" alt="Brown-Forman" loading="lazy"></div>
+      <div class="client-item"><img src="logos/amazon.png" alt="Amazon" loading="lazy"></div>
+      <div class="client-item"><img src="logos/mercedes.png" alt="Mercedes-Benz" loading="lazy"></div>
+      <div class="client-item"><img src="logos/speed-museum.png" alt="Speed Art Museum" loading="lazy"></div>
     </div>
   </div>
 </div>
@@ -119,6 +131,61 @@
         <div class="block-num">03</div>
         <div class="block-title">Preventive Maintenance</div>
         <p class="block-desc">Scheduled inspections, adjustments, and service to keep your elevators running. Our technicians know your system — not a stranger dispatched from a call center.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROJECT GALLERY ── -->
+<section class="project-gallery">
+  <div class="project-gallery-inner">
+    <div class="gallery-header">
+      <div class="section-eyebrow" style="color:rgba(255,255,255,0.35);">Project Gallery</div>
+      <h2 class="section-h" style="color:var(--white);">Built for environments<br>that <em>demand precision.</em></h2>
+      <p class="section-sub" style="color:rgba(255,255,255,0.45);">Every installation is engineered to the building — the architecture, the client, and the use case.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item gallery-item--tall">
+        <div class="gallery-ph"></div>
+        <div class="gallery-cap">
+          <div class="gallery-cap-title">Automotive Showroom</div>
+          <div class="gallery-cap-loc">Louisville, Kentucky</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-ph"></div>
+        <div class="gallery-cap">
+          <div class="gallery-cap-title">Museum Installation</div>
+          <div class="gallery-cap-loc">Louisville, Kentucky</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-ph"></div>
+        <div class="gallery-cap">
+          <div class="gallery-cap-title">Corporate Headquarters</div>
+          <div class="gallery-cap-loc">Louisville, Kentucky</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-ph"></div>
+        <div class="gallery-cap">
+          <div class="gallery-cap-title">Distribution Facility</div>
+          <div class="gallery-cap-loc">Louisville, Kentucky</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-ph"></div>
+        <div class="gallery-cap">
+          <div class="gallery-cap-title">Hotel Lobby</div>
+          <div class="gallery-cap-loc">Nashville, Tennessee</div>
+        </div>
+      </div>
+      <div class="gallery-item">
+        <div class="gallery-ph"></div>
+        <div class="gallery-cap">
+          <div class="gallery-cap-title">Mixed-Use Development</div>
+          <div class="gallery-cap-loc">Indianapolis, Indiana</div>
+        </div>
       </div>
     </div>
   </div>
