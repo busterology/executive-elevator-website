@@ -355,23 +355,6 @@ body{font-family:var(--sans);color:var(--text);background:var(--white);overflow-
     </form>
   </div>
 
-  <!-- ── EMERGENCY ── -->
-  <div class="assess-step" id="step-emergency">
-    <div class="emergency-wrap">
-      <div class="emergency-eyebrow">Available 24 / 7</div>
-      <h2 class="emergency-h">Call us now.<br>We'll get you<br><em>back up.</em></h2>
-      <div class="emergency-phones">
-        <div class="emergency-phone-label">Toll Free</div>
-        <a href="tel:18664635251" class="emergency-phone-main">(866) 463-5251</a>
-        <div class="emergency-phone-label">Louisville &amp; Regional</div>
-        <a href="tel:15026361993" class="emergency-phone-alt">(502) 636-1993</a>
-        <div class="emergency-phone-label" style="margin-top:0.8rem;">Indianapolis</div>
-        <a href="tel:13174265664" class="emergency-phone-alt">(317) 426-5664</a>
-      </div>
-      <button class="emergency-back-btn" onclick="exitEmergency()">← That's not my situation</button>
-    </div>
-  </div>
-
   <!-- ── STEP RESULT ── -->
   <div class="assess-step" id="step-result">
     <div class="step-eyebrow">Assessment Complete</div>
@@ -468,17 +451,10 @@ function selectCard(key, value, el) {
   if (nb) nb.classList.add('ready');
   clearTimeout(autoTimer);
   if (key === 'concern' && value === 'out-of-service') {
-    autoTimer = setTimeout(function(){ show('step-emergency'); }, 300);
+    autoTimer = setTimeout(function(){ window.location.href = 'emergency.html'; }, 300);
   } else {
     autoTimer = setTimeout(goNext, 450);
   }
-}
-
-function exitEmergency() {
-  state.concern = null;
-  var step = document.getElementById('step-b2');
-  if (step) step.querySelectorAll('.a-card').forEach(function(c){ c.classList.remove('selected'); });
-  show('step-b2');
 }
 
 function submitAssessment(e) {
