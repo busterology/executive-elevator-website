@@ -9,8 +9,10 @@
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="stylesheet" href="style.css">
 <style>
-.story-open{background:var(--navy);padding:calc(var(--nav-h) + 5rem) 3rem 0;}
-.story-open-inner{max-width:var(--max);margin:0 auto;padding-bottom:4rem;}
+.story-open{position:relative;background:var(--navy);padding:calc(var(--nav-h) + 5rem) 3rem 0;overflow:hidden;}
+.story-open-bg{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat;}
+.story-open-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(11,21,38,0.25) 0%,rgba(11,21,38,0.65) 45%,rgba(11,21,38,1) 80%);}
+.story-open-inner{position:relative;z-index:2;max-width:var(--max);margin:0 auto;padding-bottom:4rem;}
 .story-open-label{font-size:0.65rem;letter-spacing:0.26em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:1.5rem;font-weight:500;}
 .story-open-h{font-family:var(--serif);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:400;color:var(--white);line-height:1.08;max-width:700px;margin-bottom:1rem;}
 .story-open-h em{font-style:italic;}
@@ -63,6 +65,8 @@
 
 <!-- ── OPEN ── -->
 <div class="story-open">
+  <div class="story-open-bg"></div>
+  <div class="story-open-overlay"></div>
   <div class="story-open-inner">
     <div class="story-open-label">Our Story</div>
     <h1 class="story-open-h">The family behind<br><em>the firm.</em></h1>
