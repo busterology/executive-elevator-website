@@ -3,42 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Story — Executive Elevator Co.</title>
+<title>About — Executive Elevator Co.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link rel="icon" type="image/x-icon" href="favicon.ico">
 <link rel="stylesheet" href="style.css">
 <style>
-.story-open{background:var(--navy);padding:calc(var(--nav-h) + 5rem) 3rem 0;}
-.story-open-inner{max-width:var(--max);margin:0 auto;padding-bottom:4rem;}
-.story-open-label{font-size:0.65rem;letter-spacing:0.26em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:1.5rem;font-weight:500;}
-.story-open-h{font-family:var(--serif);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:400;color:var(--white);line-height:1.08;max-width:700px;margin-bottom:1rem;}
-.story-open-h em{font-style:italic;}
-.story-open-sub{font-size:1rem;line-height:1.8;color:rgba(255,255,255,0.5);font-weight:300;max-width:520px;}
-.story-film{max-width:var(--max);margin:0 auto;padding:0 3rem 6rem;}
-.story-film-frame{position:relative;width:100%;padding-top:56.25%;background:var(--navy);overflow:hidden;}
 .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:start;}
 .story-body{font-size:0.95rem;line-height:1.9;color:var(--text-mid);font-weight:300;}
 .story-body p+p{margin-top:1.4rem;}
-.story-stats{display:flex;flex-direction:column;gap:3rem;padding-top:0.5rem;}
+.story-stats{display:flex;flex-direction:column;gap:3rem;padding-top:1rem;}
 .story-stat-num{font-family:var(--serif);font-size:3rem;font-weight:400;color:var(--navy);line-height:1;}
 .story-stat-label{font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--text-light);margin-top:0.4rem;font-weight:500;}
-.story-stat-rule{width:40px;height:1px;background:rgba(11,21,38,0.12);margin-top:3rem;}
-.markets-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:3rem;}
-.market-city{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--navy);margin-bottom:0.3rem;}
-.market-state{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-light);margin-bottom:0.9rem;font-weight:500;}
-.market-desc{font-size:0.83rem;line-height:1.75;color:var(--text-mid);font-weight:300;}
+.story-stat-divider{width:40px;height:1px;background:rgba(11,21,38,0.12);margin-top:3rem;}
+.markets-about{display:grid;grid-template-columns:repeat(4,1fr);gap:3rem;}
+.market-about-city{font-family:var(--serif);font-size:1.5rem;font-weight:400;color:var(--navy);margin-bottom:0.3rem;}
+.market-about-state{font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-light);margin-bottom:0.9rem;font-weight:500;}
+.market-about-desc{font-size:0.83rem;line-height:1.75;color:var(--text-mid);font-weight:300;}
 @media(max-width:900px){
   .story-grid{grid-template-columns:1fr;gap:4rem;}
   .story-stats{flex-direction:row;flex-wrap:wrap;gap:2.5rem;}
-  .story-stat-rule{display:none;}
-  .markets-grid{grid-template-columns:1fr 1fr;gap:2.5rem;}
-}
-@media(max-width:768px){
-  .story-open,.story-film{padding-left:1.5rem;padding-right:1.5rem;}
+  .story-stat-divider{display:none;}
+  .markets-about{grid-template-columns:1fr 1fr;gap:2.5rem;}
 }
 @media(max-width:600px){
-  .markets-grid{grid-template-columns:1fr;}
+  .markets-about{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -52,8 +40,7 @@
   <div class="nav-links">
 <a href="commercial.html" class="nav-link">Commercial</a>
     <a href="residential.html" class="nav-link">Residential</a>
-    <a href="our-story.html" class="nav-link active">Our Story</a>
-    <a href="core-values.html" class="nav-link">Core Values</a>
+    <a href="about.html" class="nav-link active">About</a>
     <a href="assessment.html" class="nav-cta">Get Started</a>
   </div>
   <div class="nav-mobile-btn" id="menu-btn">
@@ -61,21 +48,14 @@
   </div>
 </nav>
 
-<!-- ── OPEN ── -->
-<div class="story-open">
-  <div class="story-open-inner">
-    <div class="story-open-label">Our Story</div>
-    <h1 class="story-open-h">The family behind<br><em>the firm.</em></h1>
-    <p class="story-open-sub">The Irvins have been in the elevator business since the 1960s. What started in a garage has become the firm that Rolls-Royce, Brown-Forman, and the Speed Art Museum trust with their buildings.</p>
-  </div>
-  <div class="story-film">
-    <div class="story-film-frame">
-      <iframe src="https://www.youtube.com/embed/ESNNtOy4dPM?rel=0&modestbranding=1" frameborder="0" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;inset:0;width:100%;height:100%;border:0;" title="Executive Elevator brand film"></iframe>
-    </div>
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="page-hero-label">About</div>
+    <h1 class="page-hero-h1">A family that's been doing<br>this since <em>the 1960s.</em></h1>
+    <p class="page-hero-sub">Executive Elevator Co. was founded in 2006 by Todd Irvin — but the story behind it goes back a generation before that.</p>
   </div>
 </div>
 
-<!-- ── THE STORY ── -->
 <section class="page-section bg-white">
   <div class="section-inner">
     <div class="story-grid">
@@ -93,17 +73,17 @@
           <div class="story-stat-num">1960s</div>
           <div class="story-stat-label">When the family entered the elevator business</div>
         </div>
-        <div class="story-stat-rule"></div>
+        <div class="story-stat-divider"></div>
         <div>
           <div class="story-stat-num">2006</div>
           <div class="story-stat-label">Year Executive Elevator Co. was founded</div>
         </div>
-        <div class="story-stat-rule"></div>
+        <div class="story-stat-divider"></div>
         <div>
           <div class="story-stat-num">30+</div>
           <div class="story-stat-label">Employees across four markets</div>
         </div>
-        <div class="story-stat-rule"></div>
+        <div class="story-stat-divider"></div>
         <div>
           <div class="story-stat-num">4</div>
           <div class="story-stat-label">Markets: Louisville, Indianapolis, Nashville, Cincinnati</div>
@@ -113,7 +93,6 @@
   </div>
 </section>
 
-<!-- ── CREDENTIALS ── -->
 <div class="credentials">
   <div class="credentials-inner">
     <div class="credentials-text">
@@ -138,51 +117,48 @@
   </div>
 </div>
 
-<!-- ── MARKETS ── -->
 <section class="page-section bg-off">
   <div class="section-inner">
     <div class="section-eyebrow">Where We Work</div>
     <h2 class="section-h">Four markets.<br><em>One standard of work.</em></h2>
-    <p class="section-sub">We're not a single-market shop. Executive Elevator Co. operates across four cities, with the same certified technicians and service standards in every one of them.</p>
-    <div class="markets-grid">
+    <p class="section-sub" style="margin-bottom:4rem;">We're not a single-market shop. Executive Elevator Co. operates across four cities, with the same certified technicians and service standards in every one of them.</p>
+    <div class="markets-about">
       <div>
-        <div class="market-city">Louisville</div>
-        <div class="market-state">Kentucky — HQ</div>
-        <p class="market-desc">Our home base since 2006. Where it all started and where our deepest client relationships are built.<br><br>812 W Magnolia Ave<br>Louisville, KY 40208</p>
+        <div class="market-about-city">Louisville</div>
+        <div class="market-about-state">Kentucky — HQ</div>
+        <p class="market-about-desc">Our home base since 2006. Where it all started and where our deepest client relationships are built.<br><br>812 W Magnolia Ave<br>Louisville, KY 40208</p>
       </div>
       <div>
-        <div class="market-city">Indianapolis</div>
-        <div class="market-state">Indiana</div>
-        <p class="market-desc">Serving commercial and residential clients across the Indianapolis metro.<br><br>2201 E 46th St. #102<br>Indianapolis, IN 46205<br>(317) 426-5664</p>
+        <div class="market-about-city">Indianapolis</div>
+        <div class="market-about-state">Indiana</div>
+        <p class="market-about-desc">Serving commercial and residential clients across the Indianapolis metro.<br><br>2201 E 46th St. #102<br>Indianapolis, IN 46205<br>(317) 426-5664</p>
       </div>
       <div>
-        <div class="market-city">Nashville</div>
-        <div class="market-state">Tennessee</div>
-        <p class="market-desc">Serving commercial and residential clients across the greater Nashville area.</p>
+        <div class="market-about-city">Nashville</div>
+        <div class="market-about-state">Tennessee</div>
+        <p class="market-about-desc">Serving commercial and residential clients across the greater Nashville area.</p>
       </div>
       <div>
-        <div class="market-city">Cincinnati</div>
-        <div class="market-state">Ohio</div>
-        <p class="market-desc">Expanding our presence in one of the region's most active commercial markets.</p>
+        <div class="market-about-city">Cincinnati</div>
+        <div class="market-about-state">Ohio</div>
+        <p class="market-about-desc">Expanding our presence in one of the region's most active commercial markets.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── CTA ── -->
 <section class="cta-section">
   <div class="cta-inner">
     <div class="cta-eyebrow">Get In Touch</div>
-    <h2 class="cta-h">Ready to work with a team<br>that <em>knows this trade?</em></h2>
-    <p class="cta-sub">Reach out about a new installation, a service contract, or a modernization project. We'll take it from there.</p>
+    <h2 class="cta-h">What we do<br>is really <em>about you.</em></h2>
+    <p class="cta-sub">Reach out about a new installation, a service contract, or a modernization project.</p>
     <div class="cta-actions">
-      <a href="assessment.html" class="btn-primary">Get Started →</a>
-      <a href="tel:18664635251" class="cta-phone">(866) 463-5251</a>
+      <a href="contact.html" class="btn-primary">Start a Conversation →</a>
+      <a href="tel:15026361993" class="cta-phone">(502) 636-1993</a>
     </div>
   </div>
 </section>
 
-<!-- ── FOOTER ── -->
 <footer>
   <div class="footer-inner">
     <div class="footer-top">
@@ -202,9 +178,9 @@
       <div>
         <div class="footer-col-h">Company</div>
         <ul class="footer-links">
-          <li><a href="our-story.html">Our Story</a></li>
-          <li><a href="our-story.html">The Irvin Family</a></li>
-          <li><a href="our-story.html">Credentials</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="about.html">The Irvin Family</a></li>
+          <li><a href="about.html">Credentials</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li><a href="assessment.html">Elevator Assessment</a></li>
         </ul>
