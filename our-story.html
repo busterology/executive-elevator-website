@@ -8,16 +8,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-.story-open{background:var(--navy);padding:calc(var(--nav-h) + 5rem) 3rem 0;position:relative;overflow:hidden;}
-.story-video-wrap{position:absolute;inset:0;overflow:hidden;background:var(--navy);opacity:0.5;}
-.story-video-wrap iframe{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:100vw;height:56.25vw;min-height:100%;min-width:177.78vh;pointer-events:none;border:0;}
-.story-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(11,21,38,0.65) 0%,rgba(11,21,38,0.35) 100%);}
-.story-open-inner{max-width:var(--max);margin:0 auto;padding-bottom:4rem;position:relative;z-index:2;}
+.story-open{background:var(--navy);padding:calc(var(--nav-h) + 5rem) 3rem 0;}
+.story-open-inner{max-width:var(--max);margin:0 auto;padding-bottom:4rem;}
 .story-open-label{font-size:0.65rem;letter-spacing:0.26em;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:1.5rem;font-weight:500;}
 .story-open-h{font-family:var(--serif);font-size:clamp(2.5rem,5vw,4.5rem);font-weight:400;color:var(--white);line-height:1.08;max-width:700px;margin-bottom:1rem;}
 .story-open-h em{font-style:italic;}
 .story-open-sub{font-size:1rem;line-height:1.8;color:rgba(255,255,255,0.5);font-weight:300;max-width:520px;}
-.story-film{max-width:var(--max);margin:0 auto;padding:0 3rem 6rem;position:relative;z-index:2;}
+.story-film{max-width:var(--max);margin:0 auto;padding:0 3rem 6rem;}
 .story-film-frame{position:relative;width:100%;padding-top:56.25%;background:var(--navy);overflow:hidden;}
 .story-grid{display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:start;}
 .story-body{font-size:0.95rem;line-height:1.9;color:var(--text-mid);font-weight:300;}
@@ -65,10 +62,6 @@
 
 <!-- ── OPEN ── -->
 <div class="story-open">
-  <div class="story-video-wrap">
-    <iframe src="https://www.youtube.com/embed/ESNNtOy4dPM?autoplay=1&mute=1&loop=1&playlist=ESNNtOy4dPM&controls=0&rel=0&modestbranding=1&playsinline=1&disablekb=1" frameborder="0" allow="autoplay; encrypted-media" title="Executive Elevator brand film background"></iframe>
-  </div>
-  <div class="story-overlay"></div>
   <div class="story-open-inner">
     <div class="story-open-label">Our Story</div>
     <h1 class="story-open-h">The family behind<br><em>the firm.</em></h1>
