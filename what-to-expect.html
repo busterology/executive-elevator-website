@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What to Expect — Executive Elevator Co.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link rel="stylesheet" href="style.css">
+<style>
+.phases{padding:7rem 3rem;background:var(--white);}
+.phases-inner{max-width:var(--max);margin:0 auto;}
+.phase{display:grid;grid-template-columns:100px 1fr;gap:4rem;padding:4rem 0;border-bottom:1px solid rgba(11,21,38,0.07);}
+.phase:first-child{border-top:1px solid rgba(11,21,38,0.07);}
+.phase-num{font-family:var(--serif);font-size:3.5rem;font-weight:400;color:rgba(11,21,38,0.1);line-height:1;padding-top:0.15rem;}
+.phase-body{}
+.phase-eyebrow{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-light);font-weight:500;margin-bottom:0.6rem;}
+.phase-title{font-family:var(--serif);font-size:1.7rem;font-weight:400;color:var(--navy);line-height:1.15;margin-bottom:1.2rem;}
+.phase-title em{font-style:italic;}
+.phase-text{font-size:0.92rem;line-height:1.9;color:var(--text-mid);font-weight:300;}
+.phase-text p+p{margin-top:1rem;}
+.phase-text strong{color:var(--navy);font-weight:500;}
+.phase-note{margin-top:1.4rem;padding:1.2rem 1.5rem;background:var(--off-white);border-left:2px solid rgba(11,21,38,0.15);}
+.phase-note-label{font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-light);font-weight:500;margin-bottom:0.4rem;}
+.phase-note-text{font-size:0.82rem;line-height:1.7;color:var(--text-mid);font-weight:300;}
+.phase-questions{margin-top:1.4rem;display:flex;flex-direction:column;gap:0.5rem;}
+.phase-question{font-size:0.85rem;line-height:1.6;color:var(--text-mid);font-weight:300;padding-left:1rem;position:relative;}
+.phase-question::before{content:'—';position:absolute;left:0;color:var(--text-light);}
+.placeholder{color:rgba(11,21,38,0.3);font-style:italic;}
+.what-next{padding:7rem 3rem;background:var(--off-white);}
+.what-next-inner{max-width:var(--max);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:start;}
+.what-next-body{font-size:0.92rem;line-height:1.9;color:var(--text-mid);font-weight:300;}
+.what-next-body p+p{margin-top:1rem;}
+.what-next-links{display:flex;flex-direction:column;gap:1.2rem;}
+.next-link{display:flex;flex-direction:column;gap:0.3rem;padding:1.5rem;border:1px solid rgba(11,21,38,0.1);text-decoration:none;background:var(--white);transition:border-color 0.2s;}
+.next-link:hover{border-color:rgba(11,21,38,0.35);}
+.next-link-label{font-size:0.6rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--text-light);font-weight:500;}
+.next-link-title{font-family:var(--serif);font-size:1.1rem;font-weight:400;color:var(--navy);}
+.next-link-arrow{font-size:0.75rem;color:var(--text-light);margin-top:0.2rem;}
+@media(max-width:900px){
+  .phase{grid-template-columns:60px 1fr;gap:2rem;}
+  .what-next-inner{grid-template-columns:1fr;gap:4rem;}
+}
+@media(max-width:600px){
+  .phases,.what-next{padding:5rem 1.5rem;}
+  .phase{grid-template-columns:1fr;gap:0.5rem;}
+  .phase-num{font-size:2rem;}
+}
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-main">Executive Elevator Co.</div>
+    <div class="nav-logo-sub">Est. 2006 &nbsp;·&nbsp; Louisville, KY</div>
+  </a>
+  <div class="nav-links">
+    <a href="commercial.html" class="nav-link">Commercial</a>
+    <a href="residential.html" class="nav-link">Residential</a>
+    <a href="core-values.html" class="nav-link">Core Values</a>
+    <a href="our-story.html" class="nav-link">Our Story</a>
+    <a href="emergency.html" class="nav-link">Emergency</a>
+    <a href="assessment.html" class="nav-cta">Get Started</a>
+  </div>
+  <div class="nav-mobile-btn" id="menu-btn">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="page-hero-bg" style="background-image:url('images/what-to-expect-hero.jpg');"></div>
+  <div class="page-hero-overlay"></div>
+  <div class="page-hero-inner">
+    <div class="page-hero-label">What to Expect</div>
+    <h1 class="page-hero-h1">No surprises.<br><em>Just the work.</em></h1>
+    <p class="page-hero-sub">From the moment you reach out to the day your elevator is commissioned — here's exactly how this goes.</p>
+  </div>
+</div>
+
+<!-- ── PHASES ── -->
+<section class="phases">
+  <div class="phases-inner">
+
+    <div class="phase">
+      <div class="phase-num">01</div>
+      <div class="phase-body">
+        <div class="phase-eyebrow">After you submit</div>
+        <h2 class="phase-title">We review your assessment<br><em>and reach out.</em></h2>
+        <div class="phase-text">
+          <p>A member of our team — not a call center, not an automated system — reviews your submission and gets back to you within <strong><span class="placeholder">[TODD: response time, e.g. "one business day"]</span></strong>. The person who reviews your assessment is the same team that will handle your project.</p>
+          <p>If your situation is urgent, call us directly. The assessment is for planned projects. Emergencies go straight to the phone.</p>
+        </div>
+        <div class="phase-note">
+          <div class="phase-note-label">Good to know</div>
+          <div class="phase-note-text">If you submitted outside business hours, we'll have someone back to you by <span class="placeholder">[TODD: e.g. "noon the next business day"]</span>. We don't let submissions sit.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-num">02</div>
+      <div class="phase-body">
+        <div class="phase-eyebrow">The first call</div>
+        <h2 class="phase-title">A conversation, not<br><em>a sales pitch.</em></h2>
+        <div class="phase-text">
+          <p>We'll schedule a brief call — typically <strong><span class="placeholder">[TODD: e.g. "15 to 30 minutes"]</span></strong>. The goal isn't to sell you. It's to understand your project well enough to show up to your site fully prepared. We'll ask about your building, your timeline, and who else is involved in the decision.</p>
+        </div>
+        <div class="phase-questions">
+          <div class="phase-question">What type of building or residence is it?</div>
+          <div class="phase-question">How many floors does the elevator need to serve?</div>
+          <div class="phase-question">Is this a new installation or an existing system?</div>
+          <div class="phase-question">What's your target timeline for completion?</div>
+          <div class="phase-question">Who else is involved in the decision — architect, GC, property manager?</div>
+          <div class="phase-question">Is there an existing elevator permit on file? (For service and modernization projects)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-num">03</div>
+      <div class="phase-body">
+        <div class="phase-eyebrow">Site assessment</div>
+        <h2 class="phase-title">We come to you<br><em>before we quote you.</em></h2>
+        <div class="phase-text">
+          <p>One of our QEI-certified technicians visits your location. We don't quote off a phone call. The site visit is where we gather what we need to give you an accurate proposal and the right system recommendation.</p>
+          <p>For <strong>commercial projects</strong>, we assess shaft dimensions, electrical capacity, structural load points, machine room access, and code compliance requirements for your jurisdiction. For <strong>residential projects</strong>, we evaluate your floor plan, structural framing, hoistway options, and the aesthetic direction you have in mind.</p>
+          <p>The visit typically takes <strong><span class="placeholder">[TODD: e.g. "one to two hours"]</span></strong>. We'll need access to the full building or relevant floors, and a point of contact who can answer questions on site.</p>
+        </div>
+        <div class="phase-note">
+          <div class="phase-note-label">What to have ready</div>
+          <div class="phase-note-text">Architectural drawings or floor plans if available. For existing systems: any prior inspection reports, permit history, or service records. For commercial: the building manager or property contact should be reachable during our visit.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-num">04</div>
+      <div class="phase-body">
+        <div class="phase-eyebrow">Proposal &amp; specifications</div>
+        <h2 class="phase-title">A full written scope.<br><em>No vague estimates.</em></h2>
+        <div class="phase-text">
+          <p>Within <strong><span class="placeholder">[TODD: e.g. "five business days"]</span></strong> of the site visit, you receive a complete written proposal — system type, full scope of work, materials, timeline, and pricing. We specify exactly what we're doing and why. If you're comparing bids, our proposals are written so you can compare line by line.</p>
+          <p>If permits are required — and for most installations, they are — we handle the application. You don't manage that process. We'll let you know when permits are pulled and what they cover.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-num">05</div>
+      <div class="phase-body">
+        <div class="phase-eyebrow">Permitting &amp; scheduling</div>
+        <h2 class="phase-title">The quiet phase.<br><em>We handle it.</em></h2>
+        <div class="phase-text">
+          <p>Once you sign, we pull the required permits and order equipment. Depending on your market, system type, and current lead times, this phase typically takes <strong><span class="placeholder">[TODD: e.g. "six to twelve weeks"]</span></strong>. We'll keep you updated at each milestone — permit approval, equipment order confirmation, delivery ETA, and scheduled start date.</p>
+          <p>During this time, you don't need to do much. We'll flag it if we need something from you. Most clients use this period to coordinate with their building manager or general contractor on site access and logistics.</p>
+        </div>
+        <div class="phase-note">
+          <div class="phase-note-label">A note on lead times</div>
+          <div class="phase-note-text">Equipment lead times vary. Some systems ship in <span class="placeholder">[TODD: timeframe]</span>, others take longer depending on customization and manufacturer availability. We'll give you a specific ETA at the time of order and update you if anything changes.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-num">06</div>
+      <div class="phase-body">
+        <div class="phase-eyebrow">Installation</div>
+        <h2 class="phase-title">Real construction.<br><em>Straight talk about what that means.</em></h2>
+        <div class="phase-text">
+          <p>We want to be direct with you: elevator installation is real construction work. Our crew is skilled, certified, and professional — but they're also on a job site. They're not in khakis. The work area will look like a work area. There will be noise. There may be dust. The elevator will be out of service for the duration of the installation.</p>
+          <p>For <strong>commercial projects</strong>, we coordinate with your building manager to establish a work schedule that minimizes disruption to other tenants and building operations. We demarcate the work zone, coordinate freight elevator access where available, and communicate the daily schedule so your team isn't surprised.</p>
+          <p>For <strong>residential projects</strong>, we protect surrounding floors and surfaces as much as the work allows. We'll walk you through what the installation days will look like before we start.</p>
+          <p>A typical <strong>residential installation</strong> takes <strong><span class="placeholder">[TODD: e.g. "three to five days"]</span></strong> once work begins. <strong>Commercial projects</strong> vary significantly by system type and building complexity — your project manager will give you a specific timeline in the proposal. As a general reference, <span class="placeholder">[TODD: add typical commercial ranges by system type if useful]</span>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-num">07</div>
+      <div class="phase-body">
+        <div class="phase-eyebrow">Inspection &amp; commissioning</div>
+        <h2 class="phase-title">The elevator doesn't move<br><em>until it passes.</em></h2>
+        <div class="phase-text">
+          <p>Before we hand anything over, the elevator goes through a state inspection by a licensed elevator inspector — independent from our team. Our QEI-certified technicians are on site for the inspection and address any items on the spot. This is standard, expected, and part of the process we manage for you.</p>
+          <p>Once it passes, we commission the system — a full operational test sequence run with you or your representative present. We want you to see it working before we call the job complete.</p>
+        </div>
+        <div class="phase-note">
+          <div class="phase-note-label">What you receive at completion</div>
+          <div class="phase-note-text">State inspection certificate, warranty documentation, full maintenance record, and a copy of the as-built specifications. For commercial clients, we provide whatever documentation your building management or compliance team requires.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase">
+      <div class="phase-num">08</div>
+      <div class="phase-body">
+        <div class="phase-eyebrow">After the job</div>
+        <h2 class="phase-title">The same team.<br><em>For the life of the elevator.</em></h2>
+        <div class="phase-text">
+          <p>Handoff isn't goodbye. We walk you through the system, answer questions, and make sure you know how to reach us. Most clients move into a maintenance contract — scheduled service, annual inspections, and priority response if something comes up.</p>
+          <p>When you call us six months after installation, you're not starting over with a stranger. You're calling the same team that built it. That's not marketing language. It's how we've kept clients like Brown-Forman and the Speed Art Museum coming back for years.</p>
+          <p>Emergency service is available <strong>24 hours a day, 7 days a week</strong> across all four markets. You'll have a direct number, not a queue.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── WHAT'S NEXT ── -->
+<section class="what-next">
+  <div class="what-next-inner">
+    <div>
+      <div class="section-eyebrow">Ready to move forward?</div>
+      <h2 class="section-h">Now you know<br><em>what to expect.</em></h2>
+      <div class="what-next-body">
+        <p>The assessment takes about two minutes and gives us what we need to reach out with context. If your situation is urgent, skip the form and call us directly.</p>
+        <p>We serve Louisville, Indianapolis, Nashville, and Cincinnati — the same standards in every market.</p>
+      </div>
+      <div style="margin-top:2.5rem;display:flex;gap:1.2rem;flex-wrap:wrap;">
+        <a href="assessment.html" class="btn-primary">Start the Assessment →</a>
+        <a href="emergency.html" class="btn-ghost-dark">Emergency Service</a>
+      </div>
+    </div>
+    <div class="what-next-links">
+      <a href="commercial.html" class="next-link">
+        <div class="next-link-label">Learn more</div>
+        <div class="next-link-title">Commercial Elevators</div>
+        <div class="next-link-arrow">View system types and our commercial work →</div>
+      </a>
+      <a href="residential.html" class="next-link">
+        <div class="next-link-label">Learn more</div>
+        <div class="next-link-title">Residential Elevators</div>
+        <div class="next-link-arrow">View custom design options →</div>
+      </a>
+      <a href="our-story.html" class="next-link">
+        <div class="next-link-label">About us</div>
+        <div class="next-link-title">The Irvin Family Story</div>
+        <div class="next-link-arrow">The family behind the firm →</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA ── -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-eyebrow">Get In Touch</div>
+    <h2 class="cta-h">Ready to talk about<br>your <em>next project?</em></h2>
+    <p class="cta-sub">Start the assessment and we'll be in touch within one business day. Or call us directly — we pick up.</p>
+    <div class="cta-actions">
+      <a href="assessment.html" class="btn-primary">Start the Assessment →</a>
+      <a href="tel:18664635251" class="cta-phone">(866) 463-5251</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo-main">Executive Elevator Co.</div>
+        <div class="footer-logo-sub">Est. 2006 &nbsp;·&nbsp; Louisville, KY</div>
+        <p class="footer-tagline">Four generations of elevator expertise. Trusted by the region's most discerning clients.</p>
+      </div>
+      <div>
+        <div class="footer-col-h">Services</div>
+        <ul class="footer-links">
+          <li><a href="commercial.html">Commercial Elevators</a></li>
+          <li><a href="residential.html">Residential Elevators</a></li>
+          <li><a href="emergency.html">Emergency Service</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-h">Company</div>
+        <ul class="footer-links">
+          <li><a href="our-story.html">Our Story</a></li>
+          <li><a href="our-story.html">The Irvin Family</a></li>
+          <li><a href="core-values.html">Core Values</a></li>
+          <li><a href="what-to-expect.html">What to Expect</a></li>
+          <li><a href="emergency.html">Emergency Service</a></li>
+          <li><a href="assessment.html">Elevator Assessment</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-h">Locations</div>
+        <ul class="footer-links">
+          <li style="color:rgba(255,255,255,0.55);font-size:0.78rem;font-weight:400;">Louisville — HQ</li>
+          <li style="color:rgba(255,255,255,0.3);font-size:0.78rem;font-weight:300;line-height:1.6;">812 W Magnolia Ave<br>Louisville, KY 40208<br><a href="tel:15026361993" style="color:rgba(255,255,255,0.38);text-decoration:none;">(502) 636-1993</a></li>
+          <li style="color:rgba(255,255,255,0.55);font-size:0.78rem;font-weight:400;margin-top:1rem;">Indianapolis</li>
+          <li style="color:rgba(255,255,255,0.3);font-size:0.78rem;font-weight:300;line-height:1.6;">2201 E 46th St. #102<br>Indianapolis, IN 46205<br><a href="tel:13174265664" style="color:rgba(255,255,255,0.38);text-decoration:none;">(317) 426-5664</a></li>
+          <li style="color:rgba(255,255,255,0.55);font-size:0.78rem;font-weight:400;margin-top:1rem;">Nashville &nbsp;·&nbsp; Cincinnati</li>
+          <li style="color:rgba(255,255,255,0.3);font-size:0.78rem;font-weight:300;margin-top:1rem;"><a href="tel:18664635251" style="color:rgba(255,255,255,0.38);text-decoration:none;">866-463-5251</a> &nbsp;Toll Free</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2026 Executive Elevator Co. All rights reserved.</div>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

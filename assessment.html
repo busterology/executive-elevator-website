@@ -363,7 +363,7 @@ body{font-family:var(--sans);color:var(--text);background:var(--white);overflow-
     <p class="result-confirm" id="result-confirm"></p>
     <div class="result-summary" id="result-summary"></div>
     <div class="result-actions">
-      <a href="contact.html" class="btn-start">Go to Contact Page →</a>
+      <a href="#" id="result-cta" class="btn-start">Learn More →</a>
       <a href="index.html" class="btn-outline">Back to Home</a>
     </div>
   </div>
@@ -512,6 +512,20 @@ function buildResult() {
       '<div class="result-summary-value">' + d.value + '</div>' +
       '</div>';
   }).join('');
+
+  var route = getResultRoute();
+  var cta = document.getElementById('result-cta');
+  cta.href = route.href;
+  cta.textContent = route.label;
+}
+
+function getResultRoute() {
+  if (state.intent === 'new') {
+    if (state.buildingType === 'commercial') return { href: 'commercial.html', label: 'Explore Commercial Elevators →' };
+    return { href: 'residential.html', label: 'Explore Residential Elevators →' };
+  }
+  if (state.intent === 'existing') return { href: 'what-to-expect.html', label: 'See What to Expect →' };
+  return { href: 'our-story.html', label: 'Learn About Our Team →' };
 }
 
 function getRecommendation() {
