@@ -363,8 +363,8 @@ body{font-family:var(--sans);color:var(--text);background:var(--white);overflow-
     <p class="result-confirm" id="result-confirm"></p>
     <div class="result-summary" id="result-summary"></div>
     <div class="result-actions">
-      <a href="#" id="result-cta" class="btn-start">Learn More →</a>
-      <a href="index.html" class="btn-outline">Back to Home</a>
+      <a href="what-to-expect.html" class="btn-start">What to Expect →</a>
+      <a href="#" id="result-secondary" class="btn-outline">Learn More →</a>
     </div>
   </div>
 
@@ -514,9 +514,9 @@ function buildResult() {
   }).join('');
 
   var route = getResultRoute();
-  var cta = document.getElementById('result-cta');
-  cta.href = route.href;
-  cta.textContent = route.label;
+  var secondary = document.getElementById('result-secondary');
+  secondary.href = route.href;
+  secondary.textContent = route.label;
 }
 
 function getResultRoute() {
@@ -524,8 +524,7 @@ function getResultRoute() {
     if (state.buildingType === 'commercial') return { href: 'commercial.html', label: 'Explore Commercial Elevators →' };
     return { href: 'residential.html', label: 'Explore Residential Elevators →' };
   }
-  if (state.intent === 'existing') return { href: 'what-to-expect.html', label: 'See What to Expect →' };
-  return { href: 'our-story.html', label: 'Learn About Our Team →' };
+  return { href: 'our-story.html', label: 'About Our Team →' };
 }
 
 function getRecommendation() {
